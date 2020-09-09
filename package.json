@@ -1,0 +1,29 @@
+{
+  "name": "mst-helper",
+  "version": "0.0.1",
+  "description": "Mobx State Tree Helper",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/hbliang/mst-helper.git"
+  },
+  "keywords": [
+    "Mobx",
+    "State",
+    "Tree",
+    "Helper"
+  ],
+  "author": "Ben <ishaobinliang@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hbliang/mst-helper/issues"
+  },
+  "homepage": "https://github.com/hbliang/mst-helper#readme",
+  "dependencies": {
+    "dayjs": "^1.8.35",
+    "mobx-state-tree": "^3.17.2"
+  }
+}
