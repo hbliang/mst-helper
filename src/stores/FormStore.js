@@ -1,10 +1,10 @@
 import { types, applySnapshot, getRoot, getSnapshot } from 'mobx-state-tree';
 import { hasAttributeTrait } from './../helper';
 
-export const resolveFormStoreType = (formModelType, defualtValue = {}) => {
+export const resolveFormStoreType = (formModelType, defualtValues = {}) => {
     return types
         .model('FormStore', {
-            value: types.optional(formModelType, defualtValue),
+            values: types.optional(formModelType, defualtValues),
             submitting: false,
         })
         .views(self => ({
@@ -13,21 +13,21 @@ export const resolveFormStoreType = (formModelType, defualtValue = {}) => {
             },
         }))
         .actions(self => ({
-            ...hasAttributeTrait(self.value),
-            getValueAsJson() {
-                return getSnapshot(self.value);
+            ...hasAttributeTrait(self.values),
+            getValuesAsJson() {
+                return getSnapshot(self.values);
             },
             setSubmitting(submitting) {
                 self.submitting = submitting;
             },
             reset() {
-                applySnapshot(self.value, defualtValue);
+                applySnapshot(self.values, defualtValues);
             },
             clear() {
-                applySnapshot(self.value, {});
+                applySnapshot(self.values, {});
             },
-            setValue(value) {
-                self.value = value;
+            setValues(values) {
+                self.values = values;
             },
         }));
 }
