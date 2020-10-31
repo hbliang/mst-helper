@@ -1,5 +1,5 @@
 import { types, applySnapshot, getRoot, getSnapshot } from 'mobx-state-tree';
-import { hasAttributeTrait } from './../helper';
+import { hasValuesTrait } from './../helper';
 
 export const resolveFormStoreType = (formModelType, defualtValues = {}) => {
     return types
@@ -13,7 +13,7 @@ export const resolveFormStoreType = (formModelType, defualtValues = {}) => {
             },
         }))
         .actions(self => ({
-            ...hasAttributeTrait(self.values),
+            ...hasValuesTrait(self.values),
             getValuesAsJson() {
                 return getSnapshot(self.values);
             },

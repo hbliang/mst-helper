@@ -1,20 +1,20 @@
 import dayjs from 'dayjs';
 
-export const hasAttributeTrait = (attributeValue) => {
+export const hasValuesTrait = (values) => {
     return {
-        setAttribute(name, value) {
-            attributeValue[name] = value;
+        setValue(name, value) {
+            values[name] = value;
         },
-        setAttributeByElement(e) {
+        setValueByElement(e) {
             const { value, checked, type, name } = e.target;
             if (type === 'checkbox') {
-                attributeValue[name] = checked;
+                values[name] = checked;
             } else if (type === 'number') {
-                attributeValue[name] = Number(value);
+                values[name] = Number(value);
             } else if (type === 'datetime-local') {
-                attributeValue[name] = dayjs(value).toString('YYYY-MM-DD HH:mm:ss');
+                values[name] = dayjs(value).toString('YYYY-MM-DD HH:mm:ss');
             } else {
-                attributeValue[name] = value;
+                values[name] = value;
             }
         },
     }
