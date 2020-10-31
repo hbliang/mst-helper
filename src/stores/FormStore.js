@@ -1,7 +1,7 @@
 import { types, applySnapshot, getRoot, getSnapshot } from 'mobx-state-tree';
 import { hasValuesTrait } from './../helper';
 
-export const resolveFormStoreType = (formModelType, defualtValues = {}) => {
+export const resolveFormStore = (formModelType, defualtValues = {}) => {
     return types
         .model('FormStore', {
             values: types.optional(formModelType, defualtValues),
