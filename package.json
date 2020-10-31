@@ -1,6 +1,6 @@
 {
   "name": "mst-helper",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Mobx State Tree Helper",
   "main": "src/index.js",
   "scripts": {

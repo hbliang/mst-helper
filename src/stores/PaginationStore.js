@@ -1,9 +1,9 @@
 import { types, applySnapshot } from 'mobx-state-tree';
 
 const Pagination = types.model({
-    page: 1,
-    total: 0,
-    perPage: 20,
+    page: types.number,
+    total: types.number,
+    perPage: types.number,
 });
 
 const PaginationStore = types
@@ -24,10 +24,10 @@ const PaginationStore = types
 
 export default PaginationStore;
 
-export const resolvePaginationStoreType = ({ onSelectPage }) => {
+export const resolvePaginationStoreType = ({ page = 1, total = 0, perPage = 20, onSelectPage }) => {
     return types
         .model('PaginationStore', {
-            pagination: types.optional(Pagination, {}),
+            pagination: types.optional(Pagination, { page, total, perPage }),
         })
         .views(self => ({
 
