@@ -3,7 +3,7 @@ import { types, applySnapshot, getRoot } from 'mobx-state-tree';
 
 export const SimplePaginationStore = types
     .model('SimplePaginationStore', {
-        page: 0,
+        page: 1,
         total: 0,
         perPage: 20,
     })
@@ -13,7 +13,7 @@ export const SimplePaginationStore = types
         }
     }))
     .actions(self => ({
-        setPaginationFromMeta(meta) {
+        setFromMeta(meta) {
             applySnapshot(self, {
                 page: parseInt(meta.current_page),
                 total: parseInt(meta.total),
@@ -28,30 +28,22 @@ export const SimplePaginationStore = types
         },
     }));
 
-
-export const resolvePaginationStore = ({ page = 0, total = 0, perPage = 20, onPageChange, onPerPageChange }) => {
-    return types.compose(
-        SimplePaginationStore
-            .named('PaginationStore')
-            .views(self => {
-                const superSetPage = self.setPage;
-                const superSetPerPage = self.setPerPage;
-
-                return {
-                    setPage(page) {
-                        superSetPage(page);
-                        onPageChange && onPageChange(self, page);
-                    },
-                    setPerPage(perPage) {
-                        superSetPerPage(perPage);
-                        onPerPageChange && onPerPageChange(self, page);
-                    },
-                }
-            }),
-        types.model({
-            page,
-            total,
-            perPage,
-        }))
+export const resolvePaginationStore = ({ onChangePage, onChangePerPage }) => {
+    return SimplePaginationStore
         .named('PaginationStore')
+        .actions(self => {
+            const superSetPage = self.setPage;
+            const superSetPerPage = self.setPerPage;
+
+            return {
+                setPage(page) {
+                    superSetPage(page);
+                    onChangePage && onChangePage(page);
+                },
+                setPerPage(perPage) {
+                    superSetPerPage(perPage);
+                    onChangePerPage && onChangePerPage(perPage);
+                }
+            }
+        });
 }
