@@ -44,5 +44,9 @@ export const resolvePaginationStoreType = ({ onSelectPage }) => {
                 self.pagination.page = page;
                 onSelectPage && onSelectPage(self, page);
             },
+            setPerPage(perPage) {
+                self.pagination.perPage = perPage;
+                onChangePerPage && onChangePerPage(self, page);
+            },
         }));
 }
