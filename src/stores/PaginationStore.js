@@ -38,11 +38,11 @@ export const resolvePaginationStore = ({ onChangePage, onChangePerPage }) => {
             return {
                 setPage(page) {
                     superSetPage(page);
-                    onChangePage && onChangePage(page);
+                    onChangePage && onChangePage(self, page);
                 },
                 setPerPage(perPage) {
                     superSetPerPage(perPage);
-                    onChangePerPage && onChangePerPage(perPage);
+                    onChangePerPage && onChangePerPage(self, perPage);
                 }
             }
         });
