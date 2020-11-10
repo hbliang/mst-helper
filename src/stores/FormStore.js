@@ -18,10 +18,10 @@ export const resolveFormStore = (params = {}) => {
     } = merge(defaultParams, params);
 
     const Values = types
-        .models(...valuesAttributes)
+        .models(valuesAttributes)
 
     const Errors = types
-        .models(...errorsAttributes)
+        .models(errorsAttributes)
 
     return types
         .model('FormStore', {
