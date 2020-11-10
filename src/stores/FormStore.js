@@ -43,11 +43,23 @@ export const resolveFormStore = (params = {}) => {
                 self.submitting = submitting;
             },
             reset() {
-                applySnapshot(self.values, defualtValues);
-                applySnapshot(self.errors, defaultErrors);
+                self.resetValues();
+                self.resetErrors();
             },
             clear() {
+                self.clearValues();
+                self.clearErrors();
+            },
+            resetValues() {
+                applySnapshot(self.values, defualtValues);
+            },
+            clearValues() {
                 applySnapshot(self.values, {});
+            },
+            resetErrors() {
+                applySnapshot(self.errors, defaultErrors);
+            },
+            clearErrors() {
                 applySnapshot(self.errors, {});
             },
             setValues(values) {
