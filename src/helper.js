@@ -12,7 +12,7 @@ export const hasAttributeTrait = (attributeValue) => {
             } else if (type === 'number') {
                 attributeValue[name] = Number(value);
             } else if (type === 'datetime-local') {
-                attributeValue[name] = dayjs(value).toString('YYYY-MM-DD HH:mm:ss');
+                attributeValue[name] = dayjs(value).format('YYYY-MM-DD HH:mm:ss');
             } else {
                 attributeValue[name] = value;
             }
